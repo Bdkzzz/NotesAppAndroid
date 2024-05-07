@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.codercampy.notesapp.databinding.FragmentNotesBinding
+import com.codercampy.notesapp.db.Note
 
 class NotesFragment : Fragment() {
 
@@ -42,8 +43,8 @@ class NotesFragment : Fragment() {
         }
 
         adapter = MyAdapter(object : MyAdapterListener {
-            override fun onItemDelete(pos: Int) {
-                deleteNote(pos)
+            override fun onItemDelete(pos: Int, note: Note) {
+                deleteNote(pos, note)
             }
         })
         binding.recyclerView.adapter = adapter
@@ -65,8 +66,8 @@ class NotesFragment : Fragment() {
 
     }
 
-    private fun deleteNote(pos: Int) {
-        noteSaver.deleteNote(pos)
+    private fun deleteNote(pos: Int, note: Note) {
+        noteSaver.deleteNote(note)
         adapter.deleteNote(pos)
 
         if (adapter.itemCount == 0) {

@@ -10,6 +10,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.codercampy.notesapp.databinding.ActivityMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +26,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+    }
+
+}
+
+fun main() {
+
+    CoroutineScope(Dispatchers.IO).launch {
+        for (i in 0 until  10000000) {
+            println("A")
+        }
+    }
+
+    CoroutineScope(Dispatchers.IO).launch {
+        for (i in 0 until  10000000) {
+            println("B")
+        }
+    }
+
+    runBlocking {
+        delay(10000)
     }
 
 }

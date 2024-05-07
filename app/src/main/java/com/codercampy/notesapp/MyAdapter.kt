@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codercampy.notesapp.databinding.ItemNoteBinding
+import com.codercampy.notesapp.db.Note
 
 class MyAdapter(
     private val listener: MyAdapterListener
@@ -49,7 +50,7 @@ class MyAdapter(
         holder.binding.tvBody.text = notes[position].body
 
         holder.binding.btnDelete.setOnClickListener {
-            listener.onItemDelete(position)
+            listener.onItemDelete(position, notes[position])
         }
     }
 

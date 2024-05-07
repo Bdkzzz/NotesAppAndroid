@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.codercampy.notesapp.databinding.FragmentAddNoteBinding
+import com.codercampy.notesapp.db.Note
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class NoteAddFragment : Fragment() {
@@ -69,7 +70,7 @@ class NoteAddFragment : Fragment() {
         }
 
         setFragmentResult("note", Bundle().apply {
-            putParcelable("note", Note(title, body))
+            putParcelable("note", Note(System.currentTimeMillis().toString(), title, body))
         })
         findNavController().navigateUp()
     }
